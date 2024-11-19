@@ -1078,6 +1078,8 @@ spec:
       labels:
         name: kubeturbo-operator
     spec:
+      imagePullSecrets:
+        - name: regcred
       containers:
       - args:
         - --leader-elect
@@ -1089,8 +1091,6 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
         image: ibm-docker-remote.artifactory.aws.nbscloud.co.uk/cpopen/kubeturbo-operator:8.13.4
-        imagePullSecrets:
-          - name: regcred
         livenessProbe:
           httpGet:
             path: /healthz
